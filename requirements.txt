@@ -1,0 +1,6 @@
+## 📦 requirements.txt
+
+```
+Django>=5.0
+```
+---
