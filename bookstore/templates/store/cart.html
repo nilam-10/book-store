@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-5">
+  <div class="card shadow-sm p-4">
+    <h2 class="text-primary mb-3">🛒 Your Cart</h2>
+
+    <a href="{% url 'book_list' %}" class="btn btn-outline-secondary mb-4">
+      ← Back to Book List
+    </a>
+
+    {% if cart_books %}
+      <ul class="list-group mb-4">
+        {% for book in cart_books %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <strong>{{ book.title }}</strong><br>
+              <small class="text-muted">Price: ₹{{ book.price }}</small>
+            </div>
+            <a href="{% url 'remove_from_cart' book.id %}" class="btn btn-sm btn-danger">
+              ❌ Remove
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+
+      <div class="text-end">
+        <h5 class="text-success">Total: ₹{{ total_price }}</h5>
+      </div>
+    {% else %}
+      <div class="alert alert-warning text-center">
+        🛍️ Your cart is empty.
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
